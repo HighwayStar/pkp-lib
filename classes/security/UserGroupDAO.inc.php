@@ -85,7 +85,7 @@ class UserGroupDAO extends DAO {
 
 		$userGroup->setId($this->getInsertId());
 		$this->updateLocaleFields($userGroup);
-		return $this->getInsertId();
+		return $userGroup->getId();
 	}
 
 	/**
@@ -865,7 +865,7 @@ class UserGroupDAO extends DAO {
 			($omitAuthors?' AND ug.role_id <> ?':'') .
 			($omitReviewers?' AND ug.role_id <> ?':'') .
 			($roleId?' AND ug.role_id = ?':'') .
-			' ORDER BY role_id ASC',
+			' ORDER BY ug.role_id ASC',
 			$params,
 			$dbResultRange
 		);

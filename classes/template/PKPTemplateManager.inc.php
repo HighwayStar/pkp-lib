@@ -39,6 +39,8 @@ define('STYLE_SEQUENCE_LAST', 20);
 define('CDN_JQUERY_VERSION', '1.11.0');
 define('CDN_JQUERY_UI_VERSION', '1.11.0');
 
+define('CSS_FILENAME_SUFFIX', 'css');
+
 import('lib.pkp.classes.template.PKPTemplateResource');
 
 class PKPTemplateManager extends Smarty {
@@ -129,8 +131,8 @@ class PKPTemplateManager extends Smarty {
 				$jquery = '//ajax.googleapis.com/ajax/libs/jquery/' . CDN_JQUERY_VERSION . '/jquery' . $min . '.js';
 				$jqueryUI = '//ajax.googleapis.com/ajax/libs/jqueryui/' . CDN_JQUERY_UI_VERSION . '/jquery-ui' . $min . '.js';
 			} else {
-				$jquery = $this->_request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jquery/jquery' . $min . '.js';
-				$jqueryUI = $this->_request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jqueryui/jquery-ui' . $min . '.js';
+				$jquery = $this->_request->getBaseUrl() . '/lib/pkp/lib/components/jquery/jquery' . $min . '.js';
+				$jqueryUI = $this->_request->getBaseUrl() . '/lib/pkp/lib/components/jquery-ui/jquery-ui' . $min . '.js';
 			}
 			$this->addJavaScript(
 				'jquery',
@@ -186,6 +188,33 @@ class PKPTemplateManager extends Smarty {
 					$this->_request->getBaseUrl() . '/' . $localeStyleSheet,
 					array(
 						'contexts' => 'backend',
+					)
+				);
+			}
+
+			// Register colour picker assets on the appearance page
+			$this->addJavaScript(
+				'spectrum',
+				$this->_request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/spectrum/spectrum.js',
+				array(
+					'contexts' => array('backend-management-settings', 'backend-admin-settings', 'backend-admin-contexts'),
+				)
+			);
+			$this->addStyleSheet(
+				'spectrum',
+				$this->_request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/spectrum/spectrum.css',
+				array(
+					'contexts' => array('backend-management-settings', 'backend-admin-settings', 'backend-admin-contexts'),
+				)
+			);
+
+			// Register recaptcha on relevant pages
+			if (Config::getVar('captcha', 'recaptcha') && Config::getVar('captcha', 'captcha_on_register')) {
+				$this->addJavaScript(
+					'recaptcha',
+					'https://www.google.com/recaptcha/api.js',
+					array(
+						'contexts' => array('frontend-user-register', 'frontend-user-registerUser'),
 					)
 				);
 			}
@@ -373,6 +402,11 @@ class PKPTemplateManager extends Smarty {
 			}
 		}
 
+		// Add extra LESS variables before compiling
+		if (isset($args['addLessVariables'])) {
+			$less->parse($args['addLessVariables']);
+		}
+
 		// Set the @baseUrl variable
 		$baseUrl = !empty($args['baseUrl']) ? $args['baseUrl'] : $request->getBaseUrl(true);
 		$less->parse("@baseUrl: '$baseUrl';");
@@ -404,7 +438,9 @@ class PKPTemplateManager extends Smarty {
 	 */
 	public function getCachedLessFilePath($name) {
 		$cacheDirectory = CacheManager::getFileCachePath();
-		return $cacheDirectory . DIRECTORY_SEPARATOR . $name . '.css';
+		$context = $this->_request->getContext();
+		$contextId = is_a($context, 'Context') ? $context->getId() : 0;
+		return $cacheDirectory . DIRECTORY_SEPARATOR . $contextId . '-' . $name . '.css';
 	}
 
 	/**
@@ -766,6 +802,15 @@ class PKPTemplateManager extends Smarty {
 	}
 
 	/**
+	 * Clear all compiled CSS files
+	 */
+	public function clearCssCache() {
+		$cacheDirectory = CacheManager::getFileCachePath();
+		$files = scandir($cacheDirectory);
+		array_map('unlink', glob(CacheManager::getFileCachePath() . DIRECTORY_SEPARATOR . '*.' . CSS_FILENAME_SUFFIX));
+	}
+
+	/**
 	 * Return an instance of the template manager.
 	 * @param $request PKPRequest
 	 * @return TemplateManager the template manager object
@@ -781,7 +826,10 @@ class PKPTemplateManager extends Smarty {
 
 		if ($instance === null) {
 			$instance = new TemplateManager($request);
-			PluginRegistry::loadCategory('themes', true);
+			$themes = PluginRegistry::getPlugins('themes');
+			if (is_null($themes)) {
+				$themes = PluginRegistry::loadCategory('themes', true);
+			}
 			$instance->initialize();
 		}
 
