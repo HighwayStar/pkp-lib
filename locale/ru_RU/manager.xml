@@ -216,4 +216,7 @@
 	<message key="manager.reviewForms.noneCreated">Не было создано форм для рецензента.</message>
 	<message key="manager.reviewForms.preview">Предпросмотр формы</message>
 	<message key="manager.reviewForms.title">Заголовок</message>
+	<message key="manager.website.title">Настройки Сайта</message>
+	<message key="manager.website.information">Информация</message>
+	<message key="manager.website.appearance">Внешний Вид</message>
 </locale>

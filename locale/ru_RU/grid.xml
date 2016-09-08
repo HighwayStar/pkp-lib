@@ -15,4 +15,19 @@
 	<message key="grid.submission.itemTitle">Автор; название</message>
 	<message key="grid.action.internalReview">Послать заявку на внутреннюю рецензию</message>
 	<message key="grid.action.externalReview">Послать заявку на внешнюю рецензию</message>
+	<message key="grid.noItems">Нет Записей</message>
+	<message key="grid.settings">Насторйки</message>
+	<message key="grid.action.remove">Удалить</message>
+	<message key="grid.action.edit">Редактировать</message>
+	<message key="grid.action.approve">Принять</message>
+	<message key="grid.action.disapprove">Отклонить</message>
+	<message key="grid.action.downloadAll">Скачать все файлы как архив</message>
+	<message key="grid.action.readReview">Прочитать этот отзыв</message>
+	<message key="grid.action.email">Отправить email</message>
+	<message key="grid.action.addReviewer">Добавить рецензента</message>
+	<message key="grid.action.addFile">Добавить файл</message>
+	<message key="grid.action.editFile">Редактировать файл</message>
+	<message key="grid.action.selectFiles">Выбрать файлы для управления</message>
+	<message key="grid.action.settings">Настройки</message>
+	<message key="grid.action.orderItems">Включить режим сортировки</message>
 </locale>

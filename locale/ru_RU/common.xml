@@ -407,4 +407,7 @@
 	<message key="navigation.goBack">Перейти назад</message>
 	<message key="navigation.items.shownTotal">{$shown} из {$total} элементов</message>
 	<message key="common.closePanel">Закрыть панель</message>
+	<message key="navigation.tools">Инструменты</message>
+	<message key="navigation.tools.importExport">Импорт/Экспорт</message>
+	<message key="navigation.tools.statistics">Статистика</message>
 </locale>

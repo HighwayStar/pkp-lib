@@ -91,4 +91,16 @@
 	<message key="admin.languages.download.cannotOpen">Невозможно открыть описание языка на сайте PKP.</message>
 	<message key="admin.scheduledTask">Запланированная задача</message>
 	<message key="admin.settings.siteLogo">Эмблема сайта</message>
+	<message key="admin.languages.download.cannotModifyRegistry">Невозможно добавить новую локаль в файл реестра локалей, обычно "registry/locales.xml".</message>
+	<message key="admin.languages.cantDisable">Эта локаль является основным языком для сайта. Вы не можете выключить её, пока не выбирете другую основную локаль.</message>
+	<message key="admin.languages.availableLocales">Доступные Локали</message>
+	<message key="admin.languages.installLocale">Установить Локаль</message>
+	<message key="admin.scheduledTask.startTime">Выполнение задачи запущено</message>
+	<message key="admin.scheduledTask.stopTime">Выполнение задачи остановлено</message>
+	<message key="admin.scheduledTask.noLog">Задача не вывела журнал</message>
+	<message key="admin.scheduledTask.downloadLog">Ваша установка {$softwareName} автоматически выполнила и завершила эту задачу, вы можете скачать файл журнала здесь: {$url}</message>
+	<message key="admin.scheduledTask.confirmClearLogs">Вы уверены что хотите удалить все журналы запланированных задач?</message>
+	<message key="admin.scheduledTask.clearLogs">Очиситить Журналы Запланированных Задач</message>
+	<message key="admin.scheduledTask.reviewReminder">Напоминание о рецензии</message>
+	<message key="admin.scheduledTask.subscriptionExpiryReminder">Напоминание об истечении подписки</message>
 </locale>
