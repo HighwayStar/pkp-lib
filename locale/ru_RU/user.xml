@@ -112,4 +112,13 @@
 	<message key="user.profile.form.affiliationRequired">Необходимо указать место работы.</message>
 	<message key="user.profile.form.mailingAddressRequired">Необходимо указать почтовый адрес.</message>
 	<message key="user.profile.form.passwordSameAsOld">Новый пароль совпадает со старым.</message>
+	<message key="user.accountInformation">Информация об учетной записи</message>
+	<message key="user.group">Группа пользователя</message>
+	<message key="user.logOutAs">Выйти из системы как</message>
+	<message key="user.login.registerNewAccount">Зарегистрироваться</message>
+	<message key="user.login.resetPasswordInstructions">Введите ниже электронную почту Вашей учетной записи и на нее будут высланы инструкции о том, как установить заново Ваш пароль.</message>
+	<message key="user.orcid">ORCID iD</message>
+	<message key="user.profile.identity">Личные данные</message>
+	<message key="user.profile.contact">Контакт</message>
+	<message key="user.profile.public">Общедоступные данные</message>
 </locale>

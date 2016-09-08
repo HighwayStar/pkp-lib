@@ -84,4 +84,11 @@
 	<message key="admin.settings">Настройки</message>
 	<message key="admin.settings.siteTheme">Тема сайта</message>
 	<message key="admin.siteSetup">Установка сайта</message>
+	<message key="admin.systemInfo.settingName">Имя параметра</message>
+	<message key="admin.systemInfo.settingValue">Значение параметра</message>
+	<message key="admin.languages.download">Загрузить локаль</message>
+	<message key="admin.languages.downloadLocales">Загруженные локали</message>
+	<message key="admin.languages.download.cannotOpen">Невозможно открыть описание языка на сайте PKP.</message>
+	<message key="admin.scheduledTask">Запланированная задача</message>
+	<message key="admin.settings.siteLogo">Эмблема сайта</message>
 </locale>
